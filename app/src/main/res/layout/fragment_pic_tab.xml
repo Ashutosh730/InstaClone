@@ -10,12 +10,13 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#FFFFFF" />
 
     <ImageView
-        android:id="@+id/road"
-        android:layout_width="413dp"
-        android:layout_height="279dp"
+        android:id="@+id/img"
+        android:layout_width="399dp"
+        android:layout_height="265dp"
         android:src="@drawable/road"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,21 +27,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:ems="10"
         android:inputType="textPersonName"
         android:hint="Add description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/road" />
+        app:layout_constraintTop_toBottomOf="@+id/img" />
 
     <Button
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="82dp"
+        android:background="#2196F3"
         android:text="Share"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
