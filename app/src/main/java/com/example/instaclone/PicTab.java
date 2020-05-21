@@ -154,8 +154,10 @@ public class PicTab extends Fragment implements View.OnClickListener{
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 }
 
-            }else {
+            }
+            else {
                 Toast.makeText(getContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
             }
         }
     }
+
