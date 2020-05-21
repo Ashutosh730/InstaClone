@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -31,6 +30,8 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 /**
@@ -141,24 +142,20 @@ public class PicTab extends Fragment implements View.OnClickListener{
 
         super.onActivityResult(requestCode,resultCode,data);
 
-        if(requestCode == 2000){
-            if(resultCode== Activity.RESULT_OK){
-                try{
-                    Uri selectedImage=data.getData();
-                    String[] filePathColumn={MediaStore.Images.Media.DATA};
-                    Cursor cursor=getActivity().getContentResolver().query(selectedImage,filePathColumn,
-                            null,null,null);
-                    cursor.moveToFirst();
-                    int columnIndex=cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath=cursor.getString(columnIndex);
-                    cursor.close();
-                    receivedImageBitmap = BitmapFactory.decodeFile(picturePath);
-                    img.setImageBitmap(receivedImageBitmap);
-                }
-                catch(Exception e){
+
+            if (resultCode == Activity.RESULT_OK) {
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    img.setImageBitmap(selectedImage);
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 }
+
+            }else {
+                Toast.makeText(getContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
             }
         }
     }
-}
